@@ -1,5 +1,5 @@
 import { UserDao } from './user';
-import { Any } from 'typeorm';
+import * as bcrypt from 'bcryptjs';
 
 export class UserOperation {
     insert(params: any){
@@ -13,5 +13,16 @@ export class UserOperation {
     }
     find(params: any){
         return UserDao.find(params)
+    }
+    bcry(length: number, password: string){
+        let str: string = '';
+        bcrypt.genSalt(length, async function(err: any, salt: any) {
+            let bcryptStr = bcrypt.hash(password, salt, function(err: any, hash: string)  {
+                 // Store hash in your password DB.
+                return hash;
+            });
+            str =  await bcryptStr;
+        });
+        return str;
     }
 }

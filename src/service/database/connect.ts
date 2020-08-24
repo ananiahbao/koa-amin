@@ -12,11 +12,12 @@ export const dbInt = async (app) =>{
         entities: [ __dirname + '/entity/*.ts', 'dist/data/entity/*.js'], // 引入实体
         synchronize: true,
     }).then((conn: any) => {
-        console.log('connect success.');
-        let param =  {username:'admin', password: 'adminya',email: '123admin@qq.com',telephone: '000000000',wechat: '123byy1233',time:1324324242,ip: '123127.0.0.1',nickname: '123阿云'}
+        console.log('database connect success.');
+        let param =  {username:'admin2',email: '123admin@qq.com',telephone: '000000000',wechat: '123byy1233',time:1324324242,ip: '123127.0.0.1',nickname: '123阿云'}
         let userOperation = new UserOperation; 
-       userOperation.find({username: 'admin'}).then(res => {
-           console.log(res[0]['id'])
+        param['password'] = userOperation.bcry(10,'ayun');
+       userOperation.insert(param).then(res => {
+           console.log(res)
        })
         console.log('应用启动成功')
         return true
