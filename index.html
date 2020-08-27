@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+<script>
+    $.ajax({
+        type:"post",
+        url:"http://localhost:3000/register?username=zxy&password=1231&email=dsadad&telephone=3233132&nickname=dasda&wechat=dasddada",
+        dataType:"json", //预期服务器返回数据的类型
+        success:function(data){
+           console.log(data)
+        },
+        error:function(jqXHR){
+           alert("发生错误："+ jqXHR.status);
+        }
+});
+</script>
+</html>

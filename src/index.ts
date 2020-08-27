@@ -11,13 +11,12 @@ const app = new Koa();
 const router = new Router();
 const port = process.env.PORT || 3000;
 
+app.use(cors());
 //路由
 AppRoutes.forEach(route => router[route.method](route.path, route.action));
-
 app.use(bodyParser());
 app.use(router.routes());
 app.use(router.allowedMethods());
-app.use(cors);
 dbInt(app);
 app.listen(port);
 

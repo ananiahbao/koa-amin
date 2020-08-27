@@ -14,15 +14,12 @@ export class UserOperation {
     find(params: any){
         return UserDao.find(params)
     }
+    // 盐加密
     bcry(length: number, password: string){
-        let str: string = '';
-        bcrypt.genSalt(length, async function(err: any, salt: any) {
-            let bcryptStr = bcrypt.hash(password, salt, function(err: any, hash: string)  {
-                 // Store hash in your password DB.
-                return hash;
-            });
-            str =  await bcryptStr;
-        });
-        return str;
+        return bcrypt.hashSync(password, bcrypt.genSaltSync(length));
+    }
+    // 解密
+    checkBcry(password: string, hash: string){
+        return bcrypt.compareSync(password, hash);
     }
 }

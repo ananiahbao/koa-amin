@@ -1,5 +1,4 @@
 import { createConnection } from 'typeorm';
-import { UserOperation } from './dao/index'
 
 export const dbInt = async (app) =>{
     createConnection ({
@@ -13,12 +12,6 @@ export const dbInt = async (app) =>{
         synchronize: true,
     }).then((conn: any) => {
         console.log('database connect success.');
-        let param =  {username:'admin2',email: '123admin@qq.com',telephone: '000000000',wechat: '123byy1233',time:1324324242,ip: '123127.0.0.1',nickname: '123阿云'}
-        let userOperation = new UserOperation; 
-        param['password'] = userOperation.bcry(10,'ayun');
-       userOperation.insert(param).then(res => {
-           console.log(res)
-       })
         console.log('应用启动成功')
         return true
     }).catch((err: any) => {

@@ -6,8 +6,8 @@ class loginController {
   hello =  async (ctx) => {
     ctx.body = await this._service.hello();
   };
-  login = async (ctx) => {
-    ctx.body = await this._service.loginInfo(ctx.request.body);
+  register = async (ctx) => {
+    ctx.body = await this._service.registerInfo(ctx);
   }
 }
 

@@ -15,7 +15,7 @@ export default class User {
      */
 
     @PrimaryGeneratedColumn() 
-    id: number = 1;
+    id: number = 0;
 
     @Column("varchar", { length: 255 })
     username: string = '';
@@ -39,5 +39,5 @@ export default class User {
     ip:string = '';
 
     @Column("varchar", { length: 255 })
-    nickname: string = ''
+    nickname: string = '';
 }
