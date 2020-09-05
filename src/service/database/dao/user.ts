@@ -1,5 +1,6 @@
 import { getManager } from 'typeorm';
 import User from '../entity/user';
+import { pasEncryption } from './checkBcrypt'
 
 interface UserInfo {
     username: string;
@@ -10,8 +11,8 @@ interface UserInfo {
     time:number; 
     ip: string;
     nickname: string
-}
-
+};
+const encryption = new pasEncryption();
 export const UserDao = {
     //user 表中插入数据
     add: async (params: UserInfo) => {
@@ -19,7 +20,7 @@ export const UserDao = {
         let user = new User();
 
         user.username = params.username;
-        user.password = params.password;
+        user.password = encryption.bcry(params.password, 10 );
         user.email = params.email;
         user.telephone = params.telephone;
         user.wechat = params.wechat;

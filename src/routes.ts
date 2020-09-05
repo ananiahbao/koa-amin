@@ -25,5 +25,20 @@ export default [
     path: '/register',
     method: 'post',
     action: loginController.register
+  },
+  /**
+   * 
+   * @api {post} /login
+   * @apiVersion 1.0
+   * @apiName login
+   * 
+   * @username  {string} 账号
+   * @password  {string} 密码
+   * @token     {string} token
+   */
+  {
+    path: '/login',
+    method: 'post',
+    action: loginController.login
   }
 ];

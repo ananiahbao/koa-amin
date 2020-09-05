@@ -8,6 +8,9 @@ class loginController {
   };
   register = async (ctx) => {
     ctx.body = await this._service.registerInfo(ctx);
+  };
+  login = async (ctx) => {
+    ctx.body = await this._service.loginInfo(ctx);
   }
 }
 
