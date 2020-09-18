@@ -6,11 +6,17 @@ export class aboutToken {
 
     createToken() {
         return jwt.sign({
-            exp: Math.floor(Date.now() / 1000) + (60 * 60),
+            exp: Math.floor(Date.now() / 1000) + (60 * 1),
             data: 'true'
           }, randomCode);
     };
     checkToken(token: string) {
-        return jwt.verify(token, randomCode);          
+        return jwt.verify(token, randomCode, (err: any, decoded) => {
+            if(decoded){
+                return decoded.data
+            }else{
+                return false
+            }
+        });          
     }
 }
